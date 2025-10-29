@@ -22,6 +22,8 @@ public final class BoardGames extends JavaPlugin {
         gameList.put(maxID+1, game);
         return maxID+1;
     }
+    public Game getGame(int id) {return gameList.get(id);}
+    public HashMap<Integer, Game> getGameList() {return gameList;}
 
     @Override
     public void onEnable() {
