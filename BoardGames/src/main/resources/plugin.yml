@@ -1,0 +1,4 @@
+name: Wilhelms-Board-Games
+version: '0.0.1'
+main: me.wilhelm.boardgames.BoardGames
+api-version: '1.21'
