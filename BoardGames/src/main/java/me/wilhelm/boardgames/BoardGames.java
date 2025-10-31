@@ -1,9 +1,16 @@
 package me.wilhelm.boardgames;
 
+import me.wilhelm.boardgames.commands.game.GameCmd;
+import me.wilhelm.boardgames.commands.game.GameTC;
 import me.wilhelm.boardgames.games.Game;
+import me.wilhelm.boardgames.games.uno.UnoListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
+import java.util.Set;
+
+import static me.wilhelm.api.minecraft.Command.registerCommand;
+import static me.wilhelm.api.minecraft.Event.registerEvent;
 
 public final class BoardGames extends JavaPlugin {
 
@@ -23,11 +30,15 @@ public final class BoardGames extends JavaPlugin {
         return maxID+1;
     }
     public Game getGame(int id) {return gameList.get(id);}
-    public HashMap<Integer, Game> getGameList() {return gameList;}
+    public Set<Integer> getGameIDs() {return gameList.keySet();}
+
 
     @Override
     public void onEnable() {
         instance = this;
+
+        registerEvents();
+        registerCommands();
 
         log("Plugin enabled.");
     }
@@ -53,5 +64,13 @@ public final class BoardGames extends JavaPlugin {
      **/
     public static void logError(String message) {
         instance.getLogger().info("[Board Games] |ERROR| " + message);
+    }
+
+    private void registerCommands() {
+        registerCommand(getCommand("Game"), new GameCmd(), new GameTC());
+    }
+
+    private void registerEvents() {
+        registerEvent(instance, new UnoListener());
     }
 }

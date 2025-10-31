@@ -48,13 +48,12 @@ public interface Game {
      * */
     boolean stop(Player winner);
 
-    /**
-     * Used to fetch a player by their player ID--or their index +1 within the <code>playerList</code> array.
-     *
-     * @param index the index +1 of the player within the array.
-     * @return the player specified by the given index.
-     */
-    Player getPlayer(int index);
+    boolean hasPlayer(Player player);
+
+    void setPlayerActive(Player player);
+    void setPlayerInactive(Player player);
+
+    void announce(String message);
 
     /**
      * Used to fetch the unique game ID of the object.
