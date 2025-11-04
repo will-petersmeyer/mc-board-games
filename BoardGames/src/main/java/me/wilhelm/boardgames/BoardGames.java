@@ -32,6 +32,8 @@ public final class BoardGames extends JavaPlugin {
     public Game getGame(int id) {return gameList.get(id);}
     public Set<Integer> getGameIDs() {return gameList.keySet();}
 
+    public void removeGame(int id) {gameList.remove(id);}
+
 
     @Override
     public void onEnable() {
