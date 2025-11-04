@@ -1,0 +1,13 @@
+name: Wilhelms-Board-Games
+version: '0.0.1'
+main: me.wilhelm.boardgames.BoardGames
+api-version: '1.21'
+
+commands:
+  Game:
+    description: Used to begin and manage games. Use /game help for more options.
+    permission: boardgames.game
+
+permissions:
+  boardgames.game:
+    description: Allows users to use the 'game' command.

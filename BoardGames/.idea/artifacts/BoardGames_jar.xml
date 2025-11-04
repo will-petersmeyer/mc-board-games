@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="BoardGames:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BoardGames_jar</output-path>
+    <root id="archive" name="BoardGames.jar">
+      <element id="module-output" name="BoardGames.main" />
+      <element id="module-source" name="BoardGames.main" />
+    </root>
+  </artifact>
+</component>

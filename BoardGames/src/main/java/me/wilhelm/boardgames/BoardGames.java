@@ -1,7 +1,7 @@
 package me.wilhelm.boardgames;
 
-import me.wilhelm.boardgames.commands.game.GameCmd;
-import me.wilhelm.boardgames.commands.game.GameTC;
+import me.wilhelm.boardgames.commands.bgames.BGamesCmd;
+import me.wilhelm.boardgames.commands.bgames.BGamesTC;
 import me.wilhelm.boardgames.games.Game;
 import me.wilhelm.boardgames.games.uno.UnoListener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,6 +34,8 @@ public final class BoardGames extends JavaPlugin {
 
     public void removeGame(int id) {gameList.remove(id);}
 
+    public void reload() {
+    }
 
     @Override
     public void onEnable() {
@@ -68,11 +70,7 @@ public final class BoardGames extends JavaPlugin {
         instance.getLogger().info("[Board Games] |ERROR| " + message);
     }
 
-    private void registerCommands() {
-        registerCommand(getCommand("Game"), new GameCmd(), new GameTC());
-    }
+    private void registerCommands() { registerCommand(getCommand("BoardGames"), new BGamesCmd(), new BGamesTC()); }
 
-    private void registerEvents() {
-        registerEvent(instance, new UnoListener());
-    }
+    private void registerEvents() { registerEvent(instance, new UnoListener()); }
 }

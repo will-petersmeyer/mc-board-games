@@ -18,7 +18,7 @@ public class UnoListener implements Listener {
                 continue;
 
             if(!game.hasPlayer(e.getPlayer()))
-                return;
+                continue;
 
             game.setPlayerActive(e.getPlayer());
             game.announce("&7[&6&l!&7] &f&n" + e.getPlayer().getName() + "&f has reconnected! &8&o[UNO]");
@@ -31,14 +31,17 @@ public class UnoListener implements Listener {
         for (int i : BoardGames.getInstance().getGameIDs()){
             Game game = BoardGames.getInstance().getGame(i);
 
-            if (!(game instanceof Uno))
+            if (!(game instanceof Uno uno))
                 continue;
 
-            if (game.hasPlayer(e.getPlayer()))
+            if (!game.hasPlayer(e.getPlayer()))
                 continue;
 
-            game.setPlayerInactive(e.getPlayer());
-            game.announce("&7[&4&l!&7] &c&n" + e.getPlayer().getName() + "&c has disconnected! &8&o[UNO]");
+            if (uno.getOfflinePlayerCount() <= Uno.maxPlayers/2)
+                game.pause();
+
+            uno.setPlayerInactive(e.getPlayer());
+            uno.announce("&7[&4&l!&7] &c&n" + e.getPlayer().getName() + "&c has disconnected! &8&o[UNO]");
         }
     }
 }
