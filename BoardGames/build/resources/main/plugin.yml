@@ -4,10 +4,16 @@ main: me.wilhelm.boardgames.BoardGames
 api-version: '1.21'
 
 commands:
-  Game:
-    description: Used to begin and manage games. Use /game help for more options.
-    permission: boardgames.game
+  BoardGames:
+    description: Used to manage plugin, create and manage games, etc. Use /bg help for more options.
+    permission: boardgames.boardgames
+    aliases:
+      - bg
+      - bgames
+      - bgame
+      - games
+      - game
 
 permissions:
-  boardgames.game:
-    description: Allows users to use the 'game' command.
+  boardgames.boardgames:
+    description: Allows users to use the 'boardgames' command.

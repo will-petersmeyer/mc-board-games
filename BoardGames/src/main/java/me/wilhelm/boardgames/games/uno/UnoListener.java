@@ -37,8 +37,10 @@ public class UnoListener implements Listener {
             if (!game.hasPlayer(e.getPlayer()))
                 continue;
 
-            if (uno.getOfflinePlayerCount() <= Uno.maxPlayers/2)
+            if (uno.getOfflinePlayerCount() <= Uno.maxPlayers/2) {
+                uno.announce("&7[&4&l!&7] &cThe game has been paused. Not enough players online.");
                 game.pause();
+            }
 
             uno.setPlayerInactive(e.getPlayer());
             uno.announce("&7[&4&l!&7] &c&n" + e.getPlayer().getName() + "&c has disconnected! &8&o[UNO]");

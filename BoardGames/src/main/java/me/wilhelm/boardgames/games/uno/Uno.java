@@ -27,6 +27,9 @@ public class Uno implements Game {
     private boolean running = false;
     private int turn = 0;
 
+    // Working game Data
+
+
     /**
      * <h2>Uno</h2>
      *
@@ -80,7 +83,7 @@ public class Uno implements Game {
             return false;
         }
 
-        if (playersMap.size() - HashMapHelper.countValues(playersMap, false) <= playersMap.size() / 2) {
+        if (playersMap.size() - HashMapHelper.countValues(playersMap, false) <= playersMap.size() / 2) { // Stops a game from being initialized if <= half the players are online.
             BoardGames.log("[Uno] Too many players are offline!");
             return false;
         }
@@ -101,6 +104,7 @@ public class Uno implements Game {
      */
 
     public void executeTurn() {
+
 
 
         switchTurn();
@@ -124,8 +128,10 @@ public class Uno implements Game {
         else
             turn++;
 
-        if (getCurrentPlayer().isOnline())
+        if (!getCurrentPlayer().isOnline()) {
             switchTurn();
+            return;
+        }
 
         executeTurn();
     }
@@ -134,7 +140,7 @@ public class Uno implements Game {
     public boolean pause() {
         running = false;
 
-        return false;
+        return true;
     }
 
     @Override
@@ -142,7 +148,7 @@ public class Uno implements Game {
         running = true;
 
         switchTurn();
-        return false;
+        return true;
     }
 
     @Override
@@ -160,7 +166,7 @@ public class Uno implements Game {
 
     @Override
     public boolean stop(Player winner) {
-        return false;
+        return true;
     }
 
     @Override

@@ -17,22 +17,43 @@ public final class BoardGames extends JavaPlugin {
     private static BoardGames instance;
     public static BoardGames getInstance() { return instance; }
 
+
     private HashMap<Integer, Game> gameList = new HashMap<>();
+    /**
+     * Adds a game to global HashMap containing all active games.
+     *
+     * @param game The game object to be added.
+     **/
     public int addGame(Game game) {
+
         int maxID = gameList.keySet().stream().max(Integer::compareTo).orElse(0);
         for (int i = 1; i < maxID; i++) {
-            if (!gameList.containsKey(i)) {
-                gameList.put(i, game);
-                return i;
-            }
+            if (!gameList.containsKey(i)) { gameList.put(i, game); return i; }
         }
+
         gameList.put(maxID+1, game);
         return maxID+1;
     }
-    public Game getGame(int id) {return gameList.get(id);}
-    public Set<Integer> getGameIDs() {return gameList.keySet();}
 
-    public void removeGame(int id) {gameList.remove(id);}
+    /**
+     * Finds a game by its game-id.
+     *
+     * @param id The id game to be added.
+     **/
+    public Game getGame(int id) { return gameList.get(id); }
+
+    /**
+     * Returns a set containing all game-ids.
+     *
+     **/
+    public Set<Integer> getGameIDs() { return gameList.keySet(); }
+
+    /**
+     * Removes a game from global HashMap containing all active games.
+     *
+     * @param id The game to be removed.
+     **/
+    public void removeGame(int id) { gameList.remove(id); }
 
     public void reload() {
     }
